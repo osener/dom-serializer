@@ -162,7 +162,8 @@ function renderText(elem, opts) {
   var data = elem.data || '';
 
   // if entities weren't decoded, no need to encode them back
-  if (opts.decodeEntities && !(elem.parent && elem.parent.name in unencodedElements)) {
+  if (opts.decodeEntities &&
+      (opts.xmlMode || !(elem.parent && elem.parent.name in unencodedElements))) {
     data = entities.encodeXML(data);
   }
 
